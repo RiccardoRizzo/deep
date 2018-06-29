@@ -1,0 +1,84 @@
+#
+# IL FILE RACCOGLIE TUTTI I PARAMETRI DELL'ESPERIMENTO
+#
+# Si suppone che i ati in ingresso siano in un file in cui si trova
+# un sample per ogni riga. La prima riga contiene le intestazioni delle
+# colonne.
+#
+# La procedura e' pensata per esperimenti piccoli, in quanto tutto e' fatto
+# in memoria.
+#
+# Dopo il caricamento si suppone di avere un dataframe cosi' fatto
+#
+#               features
+#            -----------------
+#           |                 |
+#           |                 |
+# campioni  |                 |
+#           |                 |
+#           |                 |
+#           |                 |
+#           ------------------
+#
+# Delle features una o piu' sono quelle di uscita:
+#   l_input contiene le intestazioni delle colonne di ingresso
+#   l_output contiene le intestazioni delle colonne di uscita
+#
+
+
+parEsp :
+    k : 10 #se si vuole eseguire il 10 fold
+
+    # lista delle colonne di input
+    l_input : ["3"]
+
+    l_output : ["classeID"] # lista delle colonne di uscita
+
+    l_classi : ['link', 'nuc']
+###################################################
+# nome del file con il modello della rete
+Alg :
+  path : "/home/riccardo/PycharmProjects/lib/RetiNeurali/conv3/"
+  file : "conv3_2mlp"
+
+
+parAlg :
+
+  input_shape : [64, 1]
+
+  dropout : 0.5
+  beta : 1e-3
+
+
+  cn1_kernel_num : 30
+  cn1_kernel_size : 20
+
+  cn2_kernel_num : 50
+  cn2_kernel_size : 3
+
+  cn3_kernel_num : 50
+  cn3_kernel_size : 10
+
+  cn_activation  :  "relu"
+
+  dl1_units_num : 300
+  dl1_activation : "relu"
+
+
+  dl2_units_num : 2
+  dl2_activation : "softmax"
+
+
+  validation_split : 0.1
+  learning_rate : 0.00005
+  batch_size : 64
+  epochs : 400
+
+  norma : False
+
+####################################################
+
+file :
+
+  inputFile : "/home/riccardo/Focus/22==Esperimenti/Anno2018/MouseNL/Dataset-Mouse/New Mouse/Mouse_5UTRExon_MOD_DATAFRAME.pkl" # path completo del file di input
+  outputFile : "MouseRis-3.hf5" # path completo del file di output
