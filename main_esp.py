@@ -15,7 +15,6 @@ import yaml
 
 
 def main(filePar):
-
     # leggo il file della rete neurale come stringa
     with open(filePar, 'r') as ymlfile:
         cfg = yaml.load(ymlfile)
